@@ -1,1 +1,80 @@
-<!DOCTYPE html><html><head></head><body></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CuentaFácil - Inicio</title>
+  <link rel="icon" type="image/svg+xml" href="/src/assets/logo.svg" />
+</head>
+<body>
+  <div id="onboarding-modal" class="onboarding" aria-hidden="true">
+    <div class="onboarding__card">
+      <img src="/src/assets/logo.svg" alt="CuentaFácil" class="onboarding__logo" />
+      <h1 class="onboarding__title">¡Bienvenido a CuentaFácil!</h1>
+      <p class="onboarding__subtitle">Anota tus ventas en segundos y sabe siempre si estás ganando</p>
+      <label class="onboarding__label" for="onboarding-name">¿Cómo se llama tu negocio?</label>
+      <input id="onboarding-name" class="onboarding__input" type="text" placeholder="Ej: Repostería de María" maxlength="40" />
+      <button id="onboarding-btn" class="btn btn--primary onboarding__btn">Empezar →</button>
+    </div>
+  </div>
+  <div id="cf-toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <header class="header">
+    <div class="header__brand">
+      <img src="/src/assets/logo.svg" alt="" class="header__logo" />
+      <div>
+        <span class="header__app-name">CuentaFácil</span>
+        <span id="header-business-name" class="header__business">Mi Negocio</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-content">
+
+    <div class="dashboard-summary">
+      <h2 class="form__section-title">Resumen del mes</h2>
+      <div class="cards-row">
+        <div class="card card--income"><span class="card__label">Ingresos</span><span id="dash-income" class="card__value">$0</span></div>
+        <div class="card card--expense"><span class="card__label">Gastos</span><span id="dash-expense" class="card__value">$0</span></div>
+        <div class="card card--net"><span class="card__label">Ganancia Neta</span><span id="dash-net" class="card__value card__value--big">$0</span><span class="card__sublabel">ingreso - gasto</span></div>
+      </div>
+    </div>
+    <div class="dashboard-indicators">
+      <h2 class="form__section-title">Indicadores</h2>
+      <div class="indicators-grid">
+        <div class="indicator"><span class="indicator__label">Mejor cliente</span><span id="dash-top-client" class="indicator__value">—</span></div>
+        <div class="indicator"><span class="indicator__label">Días con ventas</span><span id="dash-sales-days" class="indicator__value">0 días</span></div>
+      </div>
+    </div>
+    <div class="quick-actions">
+      <a href="/ingresos.html" class="btn btn--income btn--full" style="text-decoration:none">+ Registrar ingreso</a>
+      <a href="/gastos.html" class="btn btn--expense btn--full" style="text-decoration:none">- Registrar gasto</a>
+    </div>
+  </main>
+
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <a href="/" class="nav-item nav-item--active">
+      <span class="nav-item__icon">🏠</span>
+      <span class="nav-item__label">Inicio</span>
+    </a>
+    <a href="/ingresos.html" class="nav-item ">
+      <span class="nav-item__icon">↑</span>
+      <span class="nav-item__label">Ingresos</span>
+    </a>
+    <a href="/gastos.html" class="nav-item ">
+      <span class="nav-item__icon">↓</span>
+      <span class="nav-item__label">Gastos</span>
+    </a>
+    <a href="/movimientos.html" class="nav-item ">
+      <span class="nav-item__icon">≡</span>
+      <span class="nav-item__label">Movimientos</span>
+    </a>
+    <a href="/metas.html" class="nav-item ">
+      <span class="nav-item__icon">🎯</span>
+      <span class="nav-item__label">Metas</span>
+    </a>
+  </nav>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
