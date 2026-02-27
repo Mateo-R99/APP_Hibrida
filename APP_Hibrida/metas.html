@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CuentaFácil - Metas</title>
+  <link rel="icon" type="image/svg+xml" href="/src/assets/logo.svg" />
+</head>
+<body>
+  <div id="cf-toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <header class="header">
+    <div class="header__brand">
+      <img src="/src/assets/logo.svg" alt="" class="header__logo" />
+      <div>
+        <span class="header__app-name">CuentaFácil</span>
+        <span id="header-business-name" class="header__business">Mi Negocio</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-content">
+
+    <div class="goal-card">
+      <div class="goal-card__header"><span class="goal-card__label">Mi Progreso Actual</span><span id="goal-target-display" class="goal-card__target">Meta – $0</span></div>
+      <div class="progress-bar"><div id="goal-progress-fill" class="progress-bar__fill" style="width: 0%;"></div></div>
+      <div class="goal-card__stats"><span>Actual: <b id="goal-current-display">$0</b></span><span id="goal-pct-display" class="goal-card__pct">0%</span></div>
+    </div>
+    <h2 class="form__section-title">Definir Nueva Meta</h2>
+    <form id="form-goal" class="form form--compact" style="margin-bottom: 30px;">
+      <div class="form__row">
+        <div class="form__group"><label class="form__label">¿Qué quieres lograr?</label><input class="form__input" type="text" id="goal-title" /></div>
+        <div class="form__group"><label class="form__label">Monto ($)</label><input class="form__input" type="number" id="goal-target" required /></div>
+      </div>
+      <div class="form__group"><label class="form__label">¿Para cuándo?</label><input class="form__input" type="date" id="goal-deadline" required /></div>
+      <button type="submit" class="btn btn--primary btn--full">Establecer meta</button>
+    </form>
+    <div class="achievements"><h2 class="achievements__title">Logros</h2><div id="achievements-list" class="achievements__list"></div></div>
+
+  </main>
+
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <a href="/" class="nav-item ">
+      <span class="nav-item__icon">🏠</span>
+      <span class="nav-item__label">Inicio</span>
+    </a>
+    <a href="/ingresos.html" class="nav-item ">
+      <span class="nav-item__icon">↑</span>
+      <span class="nav-item__label">Ingresos</span>
+    </a>
+    <a href="/gastos.html" class="nav-item ">
+      <span class="nav-item__icon">↓</span>
+      <span class="nav-item__label">Gastos</span>
+    </a>
+    <a href="/movimientos.html" class="nav-item ">
+      <span class="nav-item__icon">≡</span>
+      <span class="nav-item__label">Movimientos</span>
+    </a>
+    <a href="/metas.html" class="nav-item nav-item--active">
+      <span class="nav-item__icon">🎯</span>
+      <span class="nav-item__label">Metas</span>
+    </a>
+  </nav>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
