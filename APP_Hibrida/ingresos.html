@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CuentaFácil - Ingresos</title>
+  <link rel="icon" type="image/svg+xml" href="/src/assets/logo.svg" />
+</head>
+<body>
+  <div id="cf-toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <header class="header">
+    <div class="header__brand">
+      <img src="/src/assets/logo.svg" alt="" class="header__logo" />
+      <div>
+        <span class="header__app-name">CuentaFácil</span>
+        <span id="header-business-name" class="header__business">Mi Negocio</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-content">
+
+    <h2 class="form__section-title">Registrar Ingreso</h2>
+    <form id="form-income" class="form">
+      <div class="form__group">
+        <label class="form__label" for="income-amount">Monto ($)</label>
+        <input class="form__input" type="number" id="income-amount" placeholder="Ej: 50000" inputmode="numeric" required />
+      </div>
+      <div class="form__group form__group--row">
+        <label class="form__label" for="income-external">¿Es un ingreso externo?</label>
+        <label class="toggle"><input type="checkbox" id="income-external" class="toggle__input" /><span class="toggle__slider"></span></label>
+      </div>
+      <div class="form__group" id="group-income-client">
+        <label class="form__label" for="income-client">Cliente (Opcional)</label>
+        <input class="form__input" type="text" id="income-client" placeholder="Ej: Juan Pérez" />
+      </div>
+      <div class="form__row">
+        <div class="form__group">
+          <label class="form__label" for="income-payment">Medio de pago</label>
+          <select class="form__input form__select" id="income-payment">
+            <option value="Efectivo">Efectivo</option>
+            <option value="Nequi">Nequi</option>
+            <option value="Transferencia">Transferencia</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="income-date">Fecha</label>
+          <input class="form__input" type="date" id="income-date" required />
+        </div>
+      </div>
+      <button type="submit" class="btn btn--income btn--full">Guardar ingreso</button>
+    </form>
+  </main>
+
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <a href="/" class="nav-item ">
+      <span class="nav-item__icon">🏠</span>
+      <span class="nav-item__label">Inicio</span>
+    </a>
+    <a href="/ingresos.html" class="nav-item nav-item--active">
+      <span class="nav-item__icon">↑</span>
+      <span class="nav-item__label">Ingresos</span>
+    </a>
+    <a href="/gastos.html" class="nav-item ">
+      <span class="nav-item__icon">↓</span>
+      <span class="nav-item__label">Gastos</span>
+    </a>
+    <a href="/movimientos.html" class="nav-item ">
+      <span class="nav-item__icon">≡</span>
+      <span class="nav-item__label">Movimientos</span>
+    </a>
+    <a href="/metas.html" class="nav-item ">
+      <span class="nav-item__icon">🎯</span>
+      <span class="nav-item__label">Metas</span>
+    </a>
+  </nav>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
