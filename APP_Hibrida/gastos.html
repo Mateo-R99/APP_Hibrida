@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CuentaFácil - Gastos</title>
+  <link rel="icon" type="image/svg+xml" href="/src/assets/logo.svg" />
+</head>
+<body>
+  <div id="cf-toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <header class="header">
+    <div class="header__brand">
+      <img src="/src/assets/logo.svg" alt="" class="header__logo" />
+      <div>
+        <span class="header__app-name">CuentaFácil</span>
+        <span id="header-business-name" class="header__business">Mi Negocio</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-content">
+
+    <h2 class="form__section-title">Registrar Gasto</h2>
+    <form id="form-expense" class="form">
+      <div class="form__group">
+        <label class="form__label" for="expense-amount">Monto ($)</label>
+        <input class="form__input" type="number" id="expense-amount" placeholder="Ej: 20000" inputmode="numeric" required />
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="expense-category">Categoría</label>
+        <select class="form__input form__select" id="expense-category" required>
+          <option value="" disabled selected>Selecciona una categoría</option>
+          <option value="Insumos">Insumos / Materiales</option>
+          <option value="Transporte">Transporte</option>
+          <option value="Otros">Otros</option>
+        </select>
+      </div>
+      <div class="form__group form__group--row">
+        <label class="form__label" for="expense-is-business">¿Es gasto del negocio?</label>
+        <label class="toggle"><input type="checkbox" id="expense-is-business" class="toggle__input" checked /><span class="toggle__slider"></span></label>
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="expense-date">Fecha</label>
+        <input class="form__input" type="date" id="expense-date" required />
+      </div>
+      <button type="submit" class="btn btn--expense btn--full">Guardar gasto</button>
+    </form>
+  </main>
+
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <a href="/" class="nav-item ">
+      <span class="nav-item__icon">🏠</span>
+      <span class="nav-item__label">Inicio</span>
+    </a>
+    <a href="/ingresos.html" class="nav-item ">
+      <span class="nav-item__icon">↑</span>
+      <span class="nav-item__label">Ingresos</span>
+    </a>
+    <a href="/gastos.html" class="nav-item nav-item--active">
+      <span class="nav-item__icon">↓</span>
+      <span class="nav-item__label">Gastos</span>
+    </a>
+    <a href="/movimientos.html" class="nav-item ">
+      <span class="nav-item__icon">≡</span>
+      <span class="nav-item__label">Movimientos</span>
+    </a>
+    <a href="/metas.html" class="nav-item ">
+      <span class="nav-item__icon">🎯</span>
+      <span class="nav-item__label">Metas</span>
+    </a>
+  </nav>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
