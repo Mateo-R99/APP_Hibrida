@@ -1,0 +1,57 @@
+// src/scss/_goals.scss
+.goal-card {
+  background: $color-surface; border-radius: $radius-md;
+  padding: $spacing-lg; margin-bottom: $spacing-lg; box-shadow: $shadow-sm;
+
+  &__header { display: flex; justify-content: space-between;
+              align-items: center; margin-bottom: $spacing-sm; }
+  &__label  { font-size: $font-size-xs; font-weight: 700;
+              text-transform: uppercase; color: $color-text-mid; }
+  &__target { font-size: $font-size-lg; font-weight: 700; color: $color-primary; }
+  &__stats  { display: flex; justify-content: space-between;
+              margin-top: $spacing-sm; font-size: $font-size-sm; color: $color-text-mid; }
+  &__pct    { font-weight: 700; color: $color-primary; }
+}
+
+.progress-bar {
+  height: 12px; background: $color-bg;
+  border-radius: $radius-full; overflow: hidden; border: 1px solid $color-border;
+
+  &__fill {
+    height: 100%; border-radius: $radius-full;
+    background: $color-danger;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1), background 0.4s ease;
+    &.progress--low  { background: $color-danger; }
+    &.progress--mid  { background: $color-warning; }
+    &.progress--high { background: #FDD835; }
+    &.progress--done { background: $color-success; }
+  }
+}
+
+.achievements {
+  &__title { font-size: $font-size-base; font-weight: 700;
+             color: $color-text-dark; margin-bottom: $spacing-sm; }
+  &__list  { display: flex; flex-direction: column; gap: $spacing-xs; }
+}
+
+.achievement {
+  display: flex; align-items: center; gap: $spacing-md;
+  padding: $spacing-sm $spacing-md; border-radius: $radius-md;
+  border: 1.5px solid $color-border; background: $color-surface;
+
+  &__icon { font-size: 28px; flex-shrink: 0; }
+  &__name { font-size: $font-size-sm; font-weight: 600; color: $color-text-dark; display: block; }
+  &__desc { font-size: $font-size-xs; color: $color-text-light; display: block; }
+
+  &--locked  { opacity: 0.45; filter: grayscale(1); }
+  &--unlocked {
+    border-color: $color-accent;
+    background: rgba($color-accent, 0.08);
+    animation: unlockPop 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  }
+}
+
+@keyframes unlockPop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
