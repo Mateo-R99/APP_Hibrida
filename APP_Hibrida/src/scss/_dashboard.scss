@@ -1,0 +1,64 @@
+// src/scss/_dashboard.scss
+.dashboard-summary { margin-bottom: $spacing-lg; }
+.dashboard-indicators { margin-bottom: $spacing-lg; }
+
+.cards-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.card {
+  background:    $color-surface;
+  border-radius: $radius-md;
+  padding:       $spacing-md;
+  box-shadow:    $shadow-sm;
+  display:       flex;
+  flex-direction: column;
+  gap:           $spacing-xs;
+
+  &--net {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items:    center;
+    flex-wrap:      wrap;
+    gap:            $spacing-sm;
+  }
+
+  &__label    { font-size: $font-size-xs; font-weight: 700;
+                text-transform: uppercase; color: $color-text-mid; }
+  &__value    { font-size: $font-size-xl; font-weight: 700; color: $color-text-dark;
+                &--big { font-size: $font-size-xxl; } }
+  &__sublabel { font-size: $font-size-xs; color: $color-text-light;
+                margin-left: auto; }
+
+  &--income .card__value { color: $color-success; }
+  &--expense .card__value { color: $color-danger; }
+  &--net .card__value { &.positive { color: $color-success; }
+                        &.negative { color: $color-danger; } }
+}
+
+.indicators-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+}
+
+.indicator {
+  background:    $color-surface;
+  border-radius: $radius-sm;
+  padding:       $spacing-sm $spacing-md;
+  box-shadow:    $shadow-sm;
+  &__label { font-size: $font-size-xs; color: $color-text-mid; display: block; }
+  &__value { font-size: $font-size-base; font-weight: 700;
+             color: $color-text-dark; display: block; }
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+}
