@@ -1,0 +1,88 @@
+// src/scss/_movements.scss
+.filter-tabs {
+  display:       flex;
+  gap:           $spacing-xs;
+  margin-bottom: $spacing-md;
+  background:    $color-surface;
+  border-radius: $radius-full;
+  padding:       4px;
+  box-shadow:    $shadow-sm;
+}
+
+.filter-tab {
+  flex:        1;
+  padding:     $spacing-xs $spacing-sm;
+  border-radius: $radius-full;
+  font-size:   $font-size-sm;
+  font-weight: 500;
+  color:       $color-text-mid;
+  background:  none;
+  border:      none;
+  cursor:      pointer;
+  transition:  background $transition-fast, color $transition-fast;
+
+  &--active { background: $color-primary; color: white; font-weight: 700; }
+}
+
+.chart-container {
+  background:    $color-surface;
+  border-radius: $radius-md;
+  padding:       $spacing-md;
+  margin-bottom: $spacing-md;
+  box-shadow:    $shadow-sm;
+  max-height:    200px;
+  display:       flex;
+  align-items:   center;
+  justify-content: center;
+}
+
+.movements-list { display: flex; flex-direction: column; gap: $spacing-xs; }
+
+.movement-item {
+  display:       flex;
+  align-items:   center;
+  gap:           $spacing-sm;
+  background:    $color-surface;
+  border-radius: $radius-md;
+  padding:       $spacing-sm $spacing-md;
+  box-shadow:    $shadow-sm;
+  animation:     slideIn 0.2s ease;
+
+  &__icon {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; flex-shrink: 0;
+  }
+  &__info  { flex: 1; min-width: 0; }
+  &__name  { font-size: $font-size-sm; font-weight: 600; color: $color-text-dark;
+             display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  &__date  { font-size: $font-size-xs; color: $color-text-light; display: block; }
+  &__category { font-size: $font-size-xs; color: $color-text-mid; display: block; }
+  &__right  { display: flex; align-items: center; gap: $spacing-sm; flex-shrink: 0; }
+  &__amount { font-size: $font-size-base; font-weight: 700; }
+  &__delete {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: $color-bg; color: $color-text-light; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background $transition-fast, color $transition-fast;
+    border: none; cursor: pointer;
+    &:hover { background: $color-danger; color: white; }
+  }
+
+  &--income  .movement-item__icon   { background: rgba($color-success,0.15); color: $color-success; }
+  &--income  .movement-item__amount { color: $color-success; }
+  &--expense .movement-item__icon   { background: rgba($color-danger,0.12);  color: $color-danger; }
+  &--expense .movement-item__amount { color: $color-danger; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.empty-state {
+  text-align: center; padding: $spacing-xl;
+  &__icon { font-size: 48px; display: block; margin-bottom: $spacing-md; }
+  &__text { color: $color-text-mid; margin-bottom: $spacing-lg; line-height: 1.6; }
+}
