@@ -1,1 +1,9 @@
-/* SCSS entry */
+// src/main.scss
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import 'scss/variables';
+@import 'scss/layout';
+@import 'scss/dashboard';
+@import 'scss/forms';
+@import 'scss/movements';
+@import 'scss/goals';
+@import 'scss/components';
