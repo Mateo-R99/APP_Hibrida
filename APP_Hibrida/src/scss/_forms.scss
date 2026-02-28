@@ -1,0 +1,64 @@
+// src/scss/_forms.scss
+.form {
+  display:        flex;
+  flex-direction: column;
+  gap:            $spacing-md;
+
+  &--compact { gap: $spacing-sm; }
+  &__section-title { font-size: $font-size-base; font-weight: 700;
+                     color: $color-text-dark; margin-bottom: $spacing-xs; }
+  &__row  { display: grid; grid-template-columns: 1fr 1fr; gap: $spacing-sm; }
+  &__group { display: flex; flex-direction: column; gap: $spacing-xs;
+             &--row { flex-direction: row; align-items: center;
+                      justify-content: space-between; } }
+  &__label { font-size: $font-size-sm; font-weight: 600; color: $color-text-dark; }
+  &__input {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    border: 1.5px solid $color-border;
+    border-radius: $radius-sm;
+    font-size: $font-size-base;
+    font-family: $font-family;
+    background: $color-surface;
+    color: $color-text-dark;
+    outline: none;
+    transition: border-color $transition-fast, box-shadow $transition-fast;
+    &:focus { border-color: $color-primary;
+              box-shadow: 0 0 0 3px rgba($color-primary, 0.12); }
+  }
+  &__select { appearance: none; cursor: pointer; }
+  &__textarea { resize: vertical; min-height: 80px; }
+}
+
+/* Toggle switch */
+.toggle {
+  position: relative;
+  display:  inline-block;
+  width:    48px; height: 26px;
+  flex-shrink: 0;
+
+  &__input  { opacity: 0; width: 0; height: 0; }
+  &__slider {
+    position:      absolute;
+    inset:         0;
+    background:    $color-border;
+    border-radius: $radius-full;
+    transition:    background $transition-fast;
+    cursor:        pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      left: 3px; bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform $transition-fast;
+      box-shadow: $shadow-sm;
+    }
+  }
+  &__input:checked + &__slider {
+    background: $color-primary;
+    &::before { transform: translateX(22px); }
+  }
+}
