@@ -1,7 +1,15 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
+
+// Prepared for MPA
 export default defineConfig({
   root: '.',
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html')
+      }
+    }
   }
 });
