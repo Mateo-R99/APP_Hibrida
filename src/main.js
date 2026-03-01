@@ -1,4 +1,3 @@
-// Application Entry Point
 import './main.scss';
 import Storage from './js/storage.js';
 import { router } from './js/router.js';
@@ -45,4 +44,12 @@ function seedDemoData() {
   for (let i = 0; i < 10; i++) Storage.save('cf_transactions', { type: 'expense', amount: 10000+Math.random()*30000, category: cats[i%3], date: new Date().toISOString().split('T')[0] });
   showToast('Datos de ejemplo cargados', 'success');
   setTimeout(()=>window.location.reload(), 1000);
+}
+
+// PWA Service Worker registration stub
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    // navigator.serviceWorker.register('/sw.js');
+    console.log('App ready for PWA Service Worker');
+  });
 }
