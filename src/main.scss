@@ -7,3 +7,8 @@
 @import 'scss/movements';
 @import 'scss/goals';
 @import 'scss/components';
+
+/* Optimized layout rendering */
+html {
+  scroll-behavior: smooth;
+}
