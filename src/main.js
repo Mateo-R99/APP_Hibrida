@@ -40,16 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
 function seedDemoData() {
   const c = ['Cliente A', 'Cliente B', 'Cliente C'];
   const cats = ['Insumos', 'Transporte', 'Otros'];
-  for (let i = 0; i < 20; i++) Storage.save('cf_transactions', { type: 'income', amount: 30000+Math.random()*70000, client: c[i%3], date: new Date().toISOString().split('T')[0], isBusiness: true });
-  for (let i = 0; i < 10; i++) Storage.save('cf_transactions', { type: 'expense', amount: 10000+Math.random()*30000, category: cats[i%3], date: new Date().toISOString().split('T')[0] });
+  for (let i = 0; i < 20; i++) Storage.save('cf_transactions', { type: 'income', amount: 30000 + Math.random() * 70000, client: c[i % 3], date: new Date().toISOString().split('T')[0], isBusiness: true });
+  for (let i = 0; i < 10; i++) Storage.save('cf_transactions', { type: 'expense', amount: 10000 + Math.random() * 30000, category: cats[i % 3], date: new Date().toISOString().split('T')[0] });
   showToast('Datos de ejemplo cargados', 'success');
-  setTimeout(()=>window.location.reload(), 1000);
+  setTimeout(() => window.location.reload(), 1000);
 }
 
-// PWA Service Worker registration stub
+// PWA Service Worker registration
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    // navigator.serviceWorker.register('/sw.js');
-    console.log('App ready for PWA Service Worker');
+    navigator.serviceWorker.register('/sw.js').then(registration => {
+      console.log('SW registered: ', registration);
+    }).catch(registrationError => {
+      console.log('SW registration failed: ', registrationError);
+    });
   });
 }

@@ -1,0 +1,21 @@
+{
+    "name": "CuentaFácil",
+    "short_name": "CuentaFácil",
+    "description": "Anota tus ventas en segundos y sabe siempre si estás ganando",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#10b981",
+    "icons": [
+        {
+            "src": "/src/assets/logo.svg",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "/src/assets/logo.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}
