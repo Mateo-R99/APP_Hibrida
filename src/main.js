@@ -1,3 +1,4 @@
+// Application Entry Point
 import './main.scss';
 import Storage from './js/storage.js';
 import { router } from './js/router.js';
