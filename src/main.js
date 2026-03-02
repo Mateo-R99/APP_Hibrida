@@ -27,24 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Init depending on which page we are
   if (document.getElementById('dash-income')) {
     Dashboard.init();
-    if (Storage.getAll('cf_transactions').length === 0) {
-      if (confirm('¿Cargar datos de ejemplo para explorar la app?')) seedDemoData();
-    }
   }
   if (document.getElementById('form-income')) Income.init();
   if (document.getElementById('form-expense')) Expenses.init();
   if (document.getElementById('movements-list')) Movements.init();
   if (document.getElementById('form-goal')) Goals.init();
 });
-
-function seedDemoData() {
-  const c = ['Cliente A', 'Cliente B', 'Cliente C'];
-  const cats = ['Insumos', 'Transporte', 'Otros'];
-  for (let i = 0; i < 20; i++) Storage.save('cf_transactions', { type: 'income', amount: 30000 + Math.random() * 70000, client: c[i % 3], date: new Date().toISOString().split('T')[0], isBusiness: true });
-  for (let i = 0; i < 10; i++) Storage.save('cf_transactions', { type: 'expense', amount: 10000 + Math.random() * 30000, category: cats[i % 3], date: new Date().toISOString().split('T')[0] });
-  showToast('Datos de ejemplo cargados', 'success');
-  setTimeout(() => window.location.reload(), 1000);
-}
 
 // PWA Service Worker registration
 if ('serviceWorker' in navigator) {

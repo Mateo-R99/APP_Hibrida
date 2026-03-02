@@ -3,15 +3,7 @@ import { formatCOP } from './utils.js';
 
 const Dashboard = {
   init() {
-    // Fake loading delay to let the user see the new polished loading spinner
-    setTimeout(() => {
-      const loader = document.getElementById('dashboard-loading');
-      const content = document.getElementById('dashboard-content');
-      if (loader) loader.style.display = 'none';
-      if (content) content.style.display = 'block';
-
-      this.render();
-    }, 800);
+    this.render();
   },
   render() {
     const tx = Storage.getAll('cf_transactions');
