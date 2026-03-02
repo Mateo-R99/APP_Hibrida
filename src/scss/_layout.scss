@@ -95,13 +95,15 @@ body {
   left: 0;
   right: 0;
   height: $navbar-height;
-  background: white;
+  background: linear-gradient(to top, white, rgba(255, 255, 255, 0.98));
   border-top: 1px solid $color-border;
   display: flex;
   justify-content: space-around;
   align-items: center;
   z-index: 100;
   padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(10px);
 }
 
 .nav-item {
@@ -113,27 +115,47 @@ body {
   height: 100%;
   text-decoration: none;
   color: $color-text-light;
-  transition: color $transition-fast;
+  transition: all $transition-fast;
   cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item:hover {
+  color: #5a7a78;
 }
 
 .nav-item__icon {
-  font-size: 20px;
-  margin-bottom: 2px;
+  font-size: 22px;
+  margin-bottom: 4px;
+  display: block;
+  transition: transform $transition-fast, font-size $transition-fast;
 }
 
 .nav-item__label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all $transition-fast;
 }
 
 .nav-item--active {
   color: $color-primary;
 
   .nav-item__icon {
-    background: rgba($color-primary, 0.1);
-    padding: 4px 12px;
+    background: rgba($color-primary, 0.15);
+    padding: 6px 14px;
     border-radius: $radius-full;
+    transform: scale(1.05);
+    font-size: 24px;
+  }
+
+  .nav-item__label {
+    color: $color-primary;
+    font-weight: 700;
   }
 }
 

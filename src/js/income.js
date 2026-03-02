@@ -1,6 +1,7 @@
 import Storage from './storage.js';
 import { showToast } from './utils.js';
 import Dashboard from './dashboard.js';
+import { router } from './router.js';
 
 const Income = {
   init() {
@@ -16,10 +17,11 @@ const Income = {
     const amount = parseInt(document.getElementById('income-amount').value, 10);
     if (!amount || amount <= 0) { showToast('Ingresa un monto válido', 'error'); return; }
     Storage.save('cf_transactions', this._buildTxn());
+    Dashboard.render();
     showToast('Ingreso registrado 💰', 'success');
     form.reset();
     document.getElementById('income-date').valueAsDate = new Date();
-    setTimeout(() => { window.location.href = '/'; }, 1000);
+    setTimeout(() => { router.navigate('dashboard'); }, 1000);
   },
   _buildTxn() {
     const isEx = document.getElementById('income-external').checked;

@@ -21,17 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
       Storage.saveSettings({ businessName: name || 'Mi Negocio', firstTime: false });
       if (busName) busName.textContent = name || 'Mi Negocio';
       modal.setAttribute('aria-hidden', 'true');
+
+      // Initialize all modules after onboarding
+      Dashboard.init();
+      Income.init();
+      Expenses.init();
+      Movements.init();
+      Goals.init();
     });
+  } else {
+    // Initialize all modules
+    Dashboard.init();
+    Income.init();
+    Expenses.init();
+    Movements.init();
+    Goals.init();
   }
 
-  // Init depending on which page we are
-  if (document.getElementById('dash-income')) {
-    Dashboard.init();
-  }
-  if (document.getElementById('form-income')) Income.init();
-  if (document.getElementById('form-expense')) Expenses.init();
-  if (document.getElementById('movements-list')) Movements.init();
-  if (document.getElementById('form-goal')) Goals.init();
+  // Initialize router
+  router.init();
 });
 
 // PWA Service Worker registration

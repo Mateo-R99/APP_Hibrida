@@ -1,5 +1,6 @@
 import { Chart, registerables } from 'chart.js';
 import Storage from './storage.js';
+import Dashboard from './dashboard.js';
 import { formatCOP, formatDate, showToast } from './utils.js';
 Chart.register(...registerables);
 let chartInstance = null;
@@ -18,34 +19,59 @@ const Movements = {
       const btn = e.target.closest('.movement-item__delete');
       if (btn) this._handleDelete(btn.dataset.id);
     });
-    this.render('month');
+    // Set 'today' as active and render
+    document.querySelector('[data-filter="today"]')?.classList.add('filter-tab--active');
+    this.render('today');
   },
   render(filter = 'month') {
     currentFilter = filter;
     const txns = this._getFiltered(filter);
     const list = document.getElementById('movements-list');
     const empty = document.getElementById('movements-empty');
-    if (txns.length === 0) { list.innerHTML = ''; empty.style.display = 'flex'; if(chartInstance) chartInstance.destroy(); return; }
+    if (txns.length === 0) { list.innerHTML = ''; empty.style.display = 'flex'; if (chartInstance) chartInstance.destroy(); return; }
     empty.style.display = 'none';
-    const sorted = [...txns].sort((a,b) => new Date(b.date) - new Date(a.date));
+    const sorted = [...txns].sort((a, b) => new Date(b.date) - new Date(a.date));
     list.innerHTML = sorted.map(t => this._renderItem(t)).join('');
     this._renderChart(txns);
   },
   _getFiltered(filter) {
     const all = Storage.getAll('cf_transactions');
-    const now = new Date(); now.setHours(0,0,0,0);
+    const now = new Date();
+    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
     if (filter === 'today') {
-      const s = new Date(now), e = new Date(now); e.setHours(23,59,59,999);
-      return all.filter(t => { const d=new Date(t.date); return d>=s && d<=e; });
+      return all.filter(t => {
+        const [year, month, day] = t.date.split('-').map(Number);
+        const tDate = new Date(year, month - 1, day);
+        return tDate >= todayStart && tDate < todayEnd;
+      });
     }
+
     if (filter === 'week') {
-      const s = new Date(now); s.setDate(now.getDate()-now.getDay());
-      const e = new Date(s); e.setDate(s.getDate()+6); e.setHours(23,59,59,999);
-      return all.filter(t => { const d=new Date(t.date); return d>=s && d<=e; });
+      const weekStart = new Date(todayStart);
+      const dayOfWeek = weekStart.getDay();
+      weekStart.setDate(weekStart.getDate() - dayOfWeek);
+      
+      const weekEnd = new Date(weekStart);
+      weekEnd.setDate(weekStart.getDate() + 7);
+
+      return all.filter(t => {
+        const [year, month, day] = t.date.split('-').map(Number);
+        const tDate = new Date(year, month - 1, day);
+        return tDate >= weekStart && tDate < weekEnd;
+      });
     }
-    const s = new Date(now.getFullYear(), now.getMonth(), 1);
-    const e = new Date(now.getFullYear(), now.getMonth()+1, 0); e.setHours(23,59,59,999);
-    return all.filter(t => { const d=new Date(t.date); return d>=s && d<=e; });
+
+    // Month filter
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+
+    return all.filter(t => {
+      const [year, month, day] = t.date.split('-').map(Number);
+      const tDate = new Date(year, month - 1, day);
+      return tDate >= monthStart && tDate < monthEnd;
+    });
   },
   _renderItem(t) {
     const isInc = t.type === 'income';
@@ -55,7 +81,7 @@ const Movements = {
         <span class="movement-item__date">${formatDate(t.date)}</span>
       </div>
       <div class="movement-item__right">
-        <span class="movement-item__amount">${isInc?'+':'-'}${formatCOP(t.amount)}</span>
+        <span class="movement-item__amount">${isInc ? '+' : '-'}${formatCOP(t.amount)}</span>
         <button class="movement-item__delete" data-id="${t.id}">×</button>
       </div>
     </div>`;
@@ -64,20 +90,44 @@ const Movements = {
     const ctx = document.getElementById('movements-chart');
     if (!ctx) return;
     if (chartInstance) chartInstance.destroy();
+
     const map = {};
-    txns.forEach(t => { if(!map[t.date]) map[t.date]={i:0,e:0}; t.type==='income' ? map[t.date].i+=t.amount : map[t.date].e+=t.amount; });
+    txns.forEach(t => {
+      if (!map[t.date]) map[t.date] = { i: 0, e: 0 };
+      t.type === 'income' ? map[t.date].i += t.amount : map[t.date].e += t.amount;
+    });
+
     const labels = Object.keys(map).sort();
+    const displayLabels = labels.map(d => {
+      const [year, month, day] = d.split('-');
+      return `${day}/${month}`;
+    });
+
     chartInstance = new Chart(ctx.getContext('2d'), {
       type: 'bar',
-      data: { labels: labels.map(d=>d.split('-')[2]+'/'+d.split('-')[1]), datasets: [
-        { label: 'Ingresos', data: labels.map(d=>map[d].i), backgroundColor: '#52B788' },
-        { label: 'Gastos', data: labels.map(d=>map[d].e), backgroundColor: '#D62828' }
-      ]}
+      data: {
+        labels: displayLabels,
+        datasets: [
+          { label: 'Ingresos', data: labels.map(d => map[d].i), backgroundColor: '#52B788' },
+          { label: 'Gastos', data: labels.map(d => map[d].e), backgroundColor: '#D62828' }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { position: 'top' }
+        },
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
     });
   },
   _handleDelete(id) {
     if (!confirm('¿Eliminar?')) return;
     Storage.deleteById('cf_transactions', id);
+    Dashboard.render();
     this.render(currentFilter);
     showToast('Eliminado', 'success');
   }

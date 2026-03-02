@@ -12,3 +12,23 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Screen management for SPA */
+.screen {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.screen--active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
