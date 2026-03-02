@@ -33,19 +33,33 @@
 
   <main class="app-content" id="main-content" role="main">
 
-    <div class="dashboard-summary">
-      <h2 class="form__section-title">Resumen del mes</h2>
-      <div class="cards-row">
-        <div class="card card--income"><span class="card__label">Ingresos</span><span id="dash-income" class="card__value">$0</span></div>
-        <div class="card card--expense"><span class="card__label">Gastos</span><span id="dash-expense" class="card__value">$0</span></div>
-        <div class="card card--net"><span class="card__label">Ganancia Neta</span><span id="dash-net" class="card__value card__value--big">$0</span><span class="card__sublabel">ingreso - gasto</span></div>
-      </div>
+    <div id="dashboard-loading" class="dashboard-loading">
+      <div class="spinner"></div>
+      <p>Cargando tus finanzas...</p>
     </div>
-    <div class="dashboard-indicators">
-      <h2 class="form__section-title">Indicadores</h2>
-      <div class="indicators-grid">
-        <div class="indicator"><span class="indicator__label">Mejor cliente</span><span id="dash-top-client" class="indicator__value">—</span></div>
-        <div class="indicator"><span class="indicator__label">Días con ventas</span><span id="dash-sales-days" class="indicator__value">0 días</span></div>
+
+    <div id="dashboard-content" style="display: none;">
+      <div class="dashboard-summary">
+        <h2 class="form__section-title">Resumen del mes</h2>
+        <div class="cards-row">
+          <div class="card card--income"><span class="card__label">Ingresos</span><span id="dash-income" class="card__value">$0</span></div>
+          <div class="card card--expense"><span class="card__label">Gastos</span><span id="dash-expense" class="card__value">$0</span></div>
+          <div class="card card--net"><span class="card__label">Ganancia Neta</span><span id="dash-net" class="card__value card__value--big">$0</span><span class="card__sublabel">ingreso - gasto</span></div>
+        </div>
+      </div>
+      
+      <div id="dashboard-empty-state" class="empty-state" style="display: none;">
+        <div class="empty-state__icon">📊</div>
+        <h3>Aún no hay datos</h3>
+        <p>Registra tus primeros ingresos y gastos para ver tu resumen financiero aquí.</p>
+      </div>
+
+      <div class="dashboard-indicators" id="dashboard-indicators-wrapper">
+        <h2 class="form__section-title">Indicadores</h2>
+        <div class="indicators-grid">
+          <div class="indicator"><span class="indicator__label">Mejor cliente</span><span id="dash-top-client" class="indicator__value">—</span></div>
+          <div class="indicator"><span class="indicator__label">Días con ventas</span><span id="dash-sales-days" class="indicator__value">0 días</span></div>
+        </div>
       </div>
     </div>
     <div class="quick-actions">
