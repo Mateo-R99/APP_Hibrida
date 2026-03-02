@@ -86,3 +86,10 @@ Si deseas probar la aplicación como una app nativa en tu teléfono Android, deb
 *   **JavaScript (Vanilla ES6+):** Lógica del negocio e interacción (sin frameworks pesados para un rendimiento óptimo).
 *   **Vite:** Herramienta de construcción y servidor de desarrollo ultrarrápido.
 *   **Capacitor:** Puente para transformar la aplicación web en una aplicación nativa para Android/iOS con acceso a plugins nativos.
+  
+### Integrantes
+
+*   [Carlos Andrés Baena Moncada]
+*   [Daniel David Leon Lopez]
+*   [Mateo Roldan Herrera]
+
