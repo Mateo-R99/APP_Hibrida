@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">cuentafacil</string>
-    <string name="title_activity_main">cuentafacil</string>
-    <string name="package_name">com.example.app</string>
-    <string name="custom_url_scheme">com.example.app</string>
+    <string name="app_name">CuentaFácil</string>
+    <string name="title_activity_main">CuentaFácil</string>
+    <string name="package_name">com.upb.cuentafacil</string>
+    <string name="custom_url_scheme">com.upb.cuentafacil</string>
 </resources>

@@ -135,6 +135,9 @@ dist
 dist-ssr
 *.local
 
+# Documentacion local (no se sube al repo)
+TALLER2_RESUMEN.md
+
 # macOS specific
 .DS_Store
 .AppleDouble
